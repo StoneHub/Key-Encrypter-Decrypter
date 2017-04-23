@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int prepareKey(char *key);
 /* accepts a string containing the desired key word / string and 
@@ -23,15 +24,16 @@ int main(int argc, char *argv[])
 {
 	char* key = argv[1];
 	prepareKey(key);
+	printf(key);
+	printf("\n");
 	return 0;
 }
 
 int prepareKey(char* key)
 {
 	printf(key);
-	
-	//check for key
 	printf("\n");
+	//check for key
 	if (key == '\0')	//if key is empty
 	{
 		printf("empty key\n");
@@ -39,23 +41,65 @@ int prepareKey(char* key)
 	}  
 
 	int keylength = strlen(key);	//get length of key
-	char* keycpy = key;
-	for (int i = 0; i < keylength; i++)
-	{
-		printf("%c\n", *keycpy++);	//print out key char by char on a new line
-	}
-
+	char* keycpy = malloc(1 + keylength);
+	strcpy(keycpy, key);
+	char* keycpy2 = malloc(1 + keylength);
+	strcpy(keycpy2, key);
+	char* keyhead = keycpy2;
+	char* keycpy3 = malloc(1 + keylength);
+	
 	//elimnate duplicate letters
-	if (keylength >= 2)				//if key length is less that 2 move on to building the rest of the alphabet
+	*keycpy2++;
+	for (int i = 0; i < keylength; i++)	//loop through keyA
 	{
-		for (int i = 0; i < keylength; i++)	//loop though key
+		for (int j = i+1; j < keylength; j++)	//loop through keyB to the right of current position in keyA[i]
 		{
-			if () ;					//if current keycpy index exist in the key
+			if (*keycpy2 == *keycpy)			//if it finds duplicate letter
+			{
+				*keycpy2 = ' ';				//keyB gets current index value changed to null
+			}
+			*keycpy2++;
+		}
+		*keycpy3 = *keycpy;
+
+		*keycpy++;															
+		keycpy2 = keycpy;					
+		*keycpy2++;
+
+		*keycpy3++;
+	}
+	int ifcounter = 0;
+	*keycpy3++ = '\0';
+	keycpy3 = keycpy3 - (keylength + 1);
+	int keylength2 = keylength;
+	for (int i = 0; i < keylength2; i++)
+	{
+		int counter = 0;
+		if (*keycpy3 == ' ')
+		{
+			ifcounter++;
+			while (*keycpy3 != '\0')
+			{
+				*keycpy3 = *(keycpy3 + 1);
+				*keycpy3++;
+				counter++;
+			}
+			keycpy3 = keycpy3 - counter;
+			keylength--;
+		}
+		else
+		{
+			*keycpy3++;
 		}
 	}
-	
+	keycpy3 = keycpy3 - (keylength2 - ifcounter);
+
 	//fill in rest of alphabet
 
+	while (keycpy3 != '\0')
+	{
+		*key
+	}
 	return 1;		//return true for key was prepared
 }
 
