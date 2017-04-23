@@ -29,18 +29,34 @@ int main(int argc, char *argv[])
 int prepareKey(char* key)
 {
 	printf(key);
-	//printf("\n");
-	if (key == '\0')
+	
+	//check for key
+	printf("\n");
+	if (key == '\0')	//if key is empty
 	{
 		printf("empty key\n");
-		return 0;
+		return 0;		//return false for key was not found
 	}  
-	int keylength = strlen(key);
+
+	int keylength = strlen(key);	//get length of key
+	char* keycpy = key;
 	for (int i = 0; i < keylength; i++)
 	{
-		printf("%c\n", *key++);
+		printf("%c\n", *keycpy++);	//print out key char by char on a new line
 	}
-	return 1;
+
+	//elimnate duplicate letters
+	if (keylength >= 2)				//if key length is less that 2 move on to building the rest of the alphabet
+	{
+		for (int i = 0; i < keylength; i++)	//loop though key
+		{
+			if () ;					//if current keycpy index exist in the key
+		}
+	}
+	
+	//fill in rest of alphabet
+
+	return 1;		//return true for key was prepared
 }
 
 void encrypt(char *str, char const *key, char *encryp)
