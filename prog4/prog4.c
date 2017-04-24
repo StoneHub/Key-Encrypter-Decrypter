@@ -92,14 +92,15 @@ int prepareKey(char* key)
 			*keycpy3++;
 		}
 	}
-	keycpy3 = keycpy3 - (keylength2 - ifcounter);
+	keycpy3 = keycpy3 - (keylength2 - ifcounter);   
+	strcpy(key, keycpy3);
 
 	//fill in rest of alphabet
 
-	while (keycpy3 != '\0')
+	/*while (keycpy3 != '\0')
 	{
 		*key
-	}
+	}*/
 	return 1;		//return true for key was prepared
 }
 
