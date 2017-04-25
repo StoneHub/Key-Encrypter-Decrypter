@@ -15,16 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="prog4.s">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="prog4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="prog4headers.s">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="prog4.s">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

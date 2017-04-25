@@ -11,7 +11,7 @@ int main()
    char str0[60] = "attack at dawn";
    char str1[60] = "this is a test of the encoding algorithm";
 
-   char key1[35] = "trailblazers";
+   char key1[35] = "0";
    char key2[35] = "letsgotigersgofightwin";
 
    char e[60];
@@ -24,7 +24,7 @@ int main()
    printf("\nstring: trailblazers\n");
    printf("key:    %s\n", key1);
    printf("---------------------------\n");
-   printf("original :  %s\n", str0);
+  /* printf("original :  %s\n", str0);
    encrypt(str0, key1, e);
    printf("encrypted:  %s\n", e);
    decrypt(e, key1, d);
@@ -59,6 +59,6 @@ int main()
    printf("encrypted:  %s\n", e);
    decrypt(e, key2, d);
    printf("decrypted:  %s\n", d);
-  
+  */
    return 0;
 }

@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="prog4.s" />
+    <None Include="prog4headers.s" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
