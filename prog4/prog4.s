@@ -15,11 +15,10 @@ prepareKey:
 	push {r4, r5, r6, r7, r8, r10, r11, lr}
 	mov key, r0
 
-	cmp key, #0			@ check if arguments are empty or not
+	cmp key, #00					@ check if arguments are empty or not
 	beq prepareDoneNoKey
 
-	ldr alphapointer, =alphabet
-	ldr char, [key]
+	ldr alphapointer, =alphabet		@ create pointer to the alphabet string
 
 		mov i, #0
 	alphabetLoop: 					@ loop though alphabet array
@@ -28,24 +27,27 @@ prepareKey:
 		bl printf
 
 		mov found, #0				@ set bool found to 0	
+		mov j, #1					@ initalize j to #1 for starting the keyLoop over 
+		ldr char, [key]				@ create pointer to address of key
 
-			mov j, #0
-		keyLoop:				@ loop though key array
-			ldr r0, =charfmt
-			ldmia char, {r2}
+		keyLoop:					@ loop though key array
+			ldr r0, =keycharfmt		@ set r0 to fmt string for printing key char
+			mov r1, char			@ put the address for the keychar into r1 for printing
 
-
-			
-
+			bl printf
+			ldr char, [key,j]		@ move char pointer to j'ith location on key string
+			add j, j, #1			@ increment j +1
+			cmp char, #00			@ loop back to keyLoop if current char is not null "#00"
+			bne keyLoop
 
 		@ continue alphabetLoop
 		add alphapointer, alphapointer, #1	@ increment alphabet char
-		add i, i, #1
-		cmp i, #26
-		blt alphabetLoop					@ end alphabet loop
+		add i, i, #1				@ increment i +1
+		cmp i, #26					@ compare i to lenght of alphabet (26)
+		blt alphabetLoop			@ end alphabet loop
 
-	mov r0, #1							@ return 1 and branch to done
-	b prepareDone					
+	mov r0, #1						@ return 1 and branch to done
+	b prepareDone					@ branch to end of prepareKey function
 @_____________________________________________________________________________
 prepareDoneNoKey:
 	ldr r0, =fmt
@@ -62,6 +64,7 @@ prepareDone:
 fmt: .asciz "%s\n"
 decimalfmt: .asciz "%d\n"
 charfmt: .asciz "%c\n"
+keycharfmt: .asciz "key char: %c\n"
 nokey: .asciz "a key was not supplied\n"
 alphabet: .asciz "abcdefghijklmnopqrstuvwxyz\n"
 end: .asciz "End of prepareKey\n"
