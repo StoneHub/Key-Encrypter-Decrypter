@@ -11,7 +11,7 @@ int main()
    char str0[60] = "attack at dawn";
    char str1[60] = "this is a test of the encoding algorithm";
 
-   char key1[35] = "0";
+   char key1[35] = "trailblazers";
    char key2[35] = "letsgotigersgofightwin";
 
    char e[60];
