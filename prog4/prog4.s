@@ -22,19 +22,24 @@ prepareKey:
 
 		mov i, #0
 	alphabetLoop: 					@ loop though alphabet array
-		ldr r0, =charfmt 			@ print out individual chars
-		ldmia alphapointer, {r1}	@ load the first letter of alphabet into r1
-		bl printf
-
 		mov found, #0				@ set bool found to 0	
 		mov j, #1					@ initalize j to #1 for starting the keyLoop over 
+
+		@ ldr r0, =charfmt 			@ print out individual chars
+		@ ldmia alphapointer, {r1}	@ load the first letter of alphabet into r1
+		@ bl printf
+
 		ldr char, [key]				@ create pointer to address of key
-
 		keyLoop:					@ loop though key array
-			ldr r0, =keycharfmt		@ set r0 to fmt string for printing key char
-			mov r1, char			@ put the address for the keychar into r1 for printing
+			@ ldr r0, =keycharfmt	@ set r0 to fmt string for printing key char
+			@ mov r1, char			@ put the address for the keychar into r1 for printing
+			@ bl printf
 
-			bl printf
+			mov r0, char 
+			ldmia alphapointer, {r1}
+			cmp r0, r0			@ if (char == alphabetchar)
+			@ bleq ifequal				 
+			
 			ldr char, [key,j]		@ move char pointer to j'ith location on key string
 			add j, j, #1			@ increment j +1
 			cmp char, #00			@ loop back to keyLoop if current char is not null "#00"
@@ -48,6 +53,13 @@ prepareKey:
 
 	mov r0, #1						@ return 1 and branch to done
 	b prepareDone					@ branch to end of prepareKey function
+
+@_____________________________________________________________________________
+ifequal:
+	ldr r0, =foundmatch
+	ldmia alphapointer, {r1}
+	bl printf
+	bx lr
 @_____________________________________________________________________________
 prepareDoneNoKey:
 	ldr r0, =fmt
@@ -61,10 +73,12 @@ prepareDone:
 	bl printf
 	pop {r4,r5,r6,r7,r8,r10,r11,pc}
 @_____________________________________________________________________________
-fmt: .asciz "%s\n"
+
+fmt: .asciz "%c\n"
 decimalfmt: .asciz "%d\n"
 charfmt: .asciz "%c\n"
 keycharfmt: .asciz "key char: %c\n"
+foundmatch: .asciz "found match: %c\n"
 nokey: .asciz "a key was not supplied\n"
 alphabet: .asciz "abcdefghijklmnopqrstuvwxyz\n"
 end: .asciz "End of prepareKey\n"
