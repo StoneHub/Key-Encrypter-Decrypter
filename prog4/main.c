@@ -17,14 +17,14 @@ int main()
    char e[60];
    char d[60];
    
-   int k;
+   int k=1;
    k = prepareKey(key1);
    assert(k != 0);
 
    printf("\nstring: trailblazers\n");
    printf("key:    %s\n", key1);
    printf("---------------------------\n");
-  /* printf("original :  %s\n", str0);
+   printf("original :  %s\n", str0);
    encrypt(str0, key1, e);
    printf("encrypted:  %s\n", e);
    decrypt(e, key1, d);
@@ -59,6 +59,6 @@ int main()
    printf("encrypted:  %s\n", e);
    decrypt(e, key2, d);
    printf("decrypted:  %s\n", d);
-  */
+  
    return 0;
 }

@@ -1,8 +1,9 @@
 /*
 Alexander Monroe Stone (astone8) 
+Clay Blankenship (cjblank)
 2310-1 
 Program 4
-4/26/2017
+4/25/2017
 */
 
 
@@ -21,17 +22,18 @@ Program 4
     characters, the function should return a false result. 
 
    input parameter(s):
-     r0 - address of string
-  
+    r0 - address of string
+    
    return value (if any):
-     lrc check character
+     r0 - the resulting key
      
    other output parameters:
      none
   
    effect/output
-      none apart from return value 
-  
+     the key string is converted to an encryption key string 
+     correspondnce conceptioonal #key = 
+
    method / effect:
      the check character is obtained by xor-ing all characters in the string. 
   
